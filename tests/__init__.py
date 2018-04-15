@@ -5,7 +5,7 @@ from jsona import flatten, JsonAPIError
 class JsonaTest(unittest.TestCase):
     """Test Cases for Cloud Realty"""
     jsona = None
-    
+
     def load_sample(self, sample_name):
         sample_file = open('tests/samples/{}.json'.format(sample_name), 'r')
         sample = sample_file.read()
@@ -18,7 +18,7 @@ class JsonaTest(unittest.TestCase):
     def test_flatten_dict(self):
         self.load_sample('valid_singleobject')
         self.assertIsInstance(self.jsona, dict)
-        
+
     def test_flatten_errors(self):
         with self.assertRaises(JsonAPIError):
             self.load_sample('errors')

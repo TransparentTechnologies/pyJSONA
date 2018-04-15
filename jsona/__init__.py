@@ -61,11 +61,12 @@ def _parse_data(data, raw):
                 flat_json[rname] = _parse_include(raw, rtype, rid)
     return flat_json
 
+
 def flatten(raw):
     raw = json.loads(raw)
     flat_json = None
     if 'errors' in raw:
-        if not isinstance(raw['errors'],list):
+        if not isinstance(raw['errors'], list):
             raise JsonApiParseException('Errors is not a list')
         else:
             raise JsonAPIError('Json API Returned Errors', raw['errors'])
@@ -81,7 +82,7 @@ def flatten(raw):
             log.debug('JSONA Data is a dict')
             flat_json = _parse_data(raw['data'], raw)
         else:
-            raise JsonApiParseException('Unsupported Data Type {}'.type(raw['data']))
+            raise JsonApiParseException('Unsupported Data Type {}'.format(type(raw['data'])))
         log.debug('Final Json: {}'.format(flat_json))
         return flat_json
     else:
